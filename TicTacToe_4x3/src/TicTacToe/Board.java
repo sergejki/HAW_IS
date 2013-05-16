@@ -41,29 +41,43 @@ public class Board {
     }
     public int CheckCondition()//[1=Player1],[2=Player2],[-1=draw],[0=no condition]
     {
-
+        //horizontal
         if (intBoard[0]==intBoard[1] & intBoard[1]==intBoard[2] & intBoard[2]!=0)
             return intBoard[0];
         else if (intBoard[3]==intBoard[4] & intBoard[4]==intBoard[5]& intBoard[5]!=0)
             return intBoard[3];
         else if (intBoard[6]==intBoard[7] & intBoard[7]==intBoard[8]& intBoard[8]!=0)
             return intBoard[6];
+        else if (intBoard[9]==intBoard[10] & intBoard[10]==intBoard[11]& intBoard[11]!=0)
+            return intBoard[9];
         
+        //vertikal
         else if (intBoard[0]==intBoard[3] & intBoard[3]==intBoard[6]& intBoard[6]!=0)
             return intBoard[0];
         else if (intBoard[1]==intBoard[4] & intBoard[4]==intBoard[7]& intBoard[7]!=0)
             return intBoard[1];
         else if (intBoard[2]==intBoard[5] & intBoard[5]==intBoard[8]& intBoard[8]!=0)
             return intBoard[2];
+        else if (intBoard[3]==intBoard[6] & intBoard[6]==intBoard[9]& intBoard[9]!=0)
+            return intBoard[3];
+        else if (intBoard[4]==intBoard[7] & intBoard[7]==intBoard[10]& intBoard[10]!=0)
+            return intBoard[4];
+        else if (intBoard[5]==intBoard[8] & intBoard[8]==intBoard[11]& intBoard[11]!=0)
+            return intBoard[5];
 
+        //diagonal
         else if (intBoard[0]==intBoard[4] & intBoard[4]==intBoard[8]& intBoard[8]!=0)
             return intBoard[0];
         else if (intBoard[1]==intBoard[4] & intBoard[4]==intBoard[7]& intBoard[7]!=0)
             return intBoard[1];
         else if (intBoard[2]==intBoard[4] & intBoard[4]==intBoard[6]& intBoard[6]!=0)
             return intBoard[2];
+        else if (intBoard[3]==intBoard[7] & intBoard[7]==intBoard[11]& intBoard[11]!=0)
+            return intBoard[3];
+        else if (intBoard[5]==intBoard[7] & intBoard[7]==intBoard[9]& intBoard[9]!=0)
+            return intBoard[5];
         else
-            for(int x=0;x<9;x++)
+            for(int x=0;x<12;x++)
                 if (intBoard[x]==0)
                     return 0;
 
