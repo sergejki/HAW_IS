@@ -2,7 +2,7 @@ package TicTacToe;
 
 
 public class Board {
-    private int intBoard[]= new int[9];
+    private int intBoard[]= new int[12];
     private int intMoveSymbol=2; //0=empty;1=Player1;2=Player2
     public int moveCount=0;
     public Board(){
@@ -18,12 +18,12 @@ public class Board {
    public Board(Board board){
         this.moveCount=board.moveCount;
         this.intMoveSymbol=board.intMoveSymbol;
-        System.arraycopy(board.intBoard, 0,this.intBoard  , 0, 9);
+        System.arraycopy(board.intBoard, 0,this.intBoard  , 0, 12);
     }
     public void copy(Board board){
         this.moveCount=board.moveCount;
         this.intMoveSymbol=board.intMoveSymbol;
-        System.arraycopy(board.intBoard, 0,  this.intBoard, 0, 9);
+        System.arraycopy(board.intBoard, 0,  this.intBoard, 0, 12);
     }
     public boolean SetMove(int boxNo){
         if (intBoard[boxNo]!=0){
@@ -71,7 +71,7 @@ public class Board {
     }
 
     public void Print(){
-        for (int x=0;x<3;x++){
+        for (int x=0;x<4;x++){
             System.out.println();
             for (int y=0;y<3;y++){
                 System.out.print("|");
