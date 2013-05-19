@@ -5,13 +5,14 @@ public class Board {
     private int intBoard[]= new int[12];
     private int intMoveSymbol=2; //0=empty;1=Player1;2=Player2
     public int moveCount=0;
+    private boolean firstMove = true;
     public Board(){
-        for (int x =0;x<=8;x++){
+        for (int x =0;x<=11;x++){
             intBoard[x]=0;
         }
     }
     public Board(int[] intBoard){
-        for (int x =0;x<=8;x++){
+        for (int x =0;x<=11;x++){
             this.intBoard[x]= intBoard[x];
         }      
     }
@@ -30,7 +31,11 @@ public class Board {
             return false;
         }
         if (intMoveSymbol==1){
-            intMoveSymbol=2;
+            if(!firstMove){
+                intMoveSymbol=2;
+            } else{
+                firstMove=false;
+            }
         }else{
             intMoveSymbol=1;
         }
@@ -91,12 +96,12 @@ public class Board {
                 System.out.print("|");
                 if (intBoard[y+(3*x)]!=0)
                     if (intBoard[y+(3*x)]==1 ){
-                        System.out.print("[X]");
+                        System.out.print(" X ");
                     }else
-                        System.out.print("[0]");
+                        System.out.print(" O ");
                 else
                     System.out.print( " "+ (y+(3*x)) + " ");
-                System.out.print("|");
+               System.out.print(" ");
                     
             }
         }

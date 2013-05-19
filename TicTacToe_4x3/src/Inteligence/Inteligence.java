@@ -21,7 +21,7 @@ public class Inteligence {
     public int Move() {
         int max = -10;
         Node bestNode= new Node();
-        for (int x = 0; x <= 8; x++) {
+        for (int x = 0; x <= 11; x++) {
             Node n = new Node();
             n.copy(rootNode);
             if (n.board.SetMove(x) == true) {
@@ -53,7 +53,7 @@ public class Inteligence {
             return boardPoint(node);
         } else {
             if (min == true) {
-                for (int x = 0; x <= 8; x++) {
+                for (int x = 0; x <= 11; x++) {
                     Node n = new Node();
                     n.copy(node);
                     if (n.board.SetMove(x) == true) {
@@ -75,7 +75,7 @@ public class Inteligence {
             }
 
             if (min == false) {
-                for (int x = 0; x <= 8; x++) {
+                for (int x = 0; x <= 11; x++) {
                     Node n = new Node();
                     n.copy(node);
                     if (n.board.SetMove(x) == true) {
