@@ -80,17 +80,29 @@ public class AIPlayerImpl {
 			}
 		}
 		
-		//horizontal 100% gewinnen
+		//horizontal 100% gewinnen (_XX) || (XX_)
 		for(int line=0; line<3; line++){
 			for(int column=0; column<4;column++){
 				if(getField(line, column).isX()){
 					//System.out.println("Akt X-Feld: "+getField(line+1, column+1));
 					if(checkHorizontalWin(line, column)){
-						if(getField(line,column-1).isX()){
+                                            if(getField(line,column-1).isX()){
 							return (line+1)*10+column+2;
 						} else{
 							return (line+1)*10+column;
 						}
+					}
+				}
+			}
+		}
+                
+                //horizontal 100% gewinnen (X_X)
+		for(int line=0; line<3; line++){
+			for(int column=0; column<4;column++){
+				if(getField(line, column).isFree()){
+					//System.out.println("Akt X-Feld: "+getField(line+1, column+1));
+					if(checkHorizontalWin2(line, column)){
+                                            return (line+1)*10+column+1;
 					}
 				}
 			}
@@ -131,18 +143,20 @@ public class AIPlayerImpl {
 		//vertikal verlieren verhindern
 		for(int line=0; line<3; line++){
 			for(int column=0; column<4;column++){
-				if(getField(line, column).isO()){
+                            if(getField(line,column).isFree()){
 					//System.out.println("Akt X-Feld: "+getField(line+1, column+1));
 					if(checkVertikalO(line, column)){
+                                     System.out.println("Vertikal verhindern");
 //						System.out.println("Akt Feld: "+" Zeile: "+(line+1)+"Spalte: "+(column+1));
 						if(getField(line-1, column).isO()){
 //							System.out.println("hier");
-							return (line+2)*10+column+1;
+							return (line+1)*10+column+1;
 						} else{
 							return (line)*10+column+1;
 						}
 					}
-				}
+                            }
+				
 			}
 		}
 		
@@ -152,6 +166,7 @@ public class AIPlayerImpl {
 				if(getField(line, column).isO()){
 					//System.out.println("Akt X-Feld: "+getField(line+1, column+1));
 					if(checkDiagonalO(line, column)){
+                                     System.out.println("Diagonall Verhindern //");
 //						System.out.println("Akt Feld: "+" Zeile: "+(line+1)+"Spalte: "+(column+1));
 						if(getField(line-1, column+1).isO()){
 							return (line+2)*10+column;
@@ -163,12 +178,15 @@ public class AIPlayerImpl {
 			}
 		}
 		
+           
+                
 		//diagonal verlieren verhindern (\)
 				for(int line=0; line<3; line++){
 					for(int column=0; column<4;column++){
 						if(getField(line, column).isO()){
 							//System.out.println("Akt X-Feld: "+getField(line+1, column+1));
 							if(checkDiagonalO2(line, column)){
+                                     System.out.println("Diagonal verhindern \\");
 //								System.out.println("Akt Feld: "+" Zeile: "+(line+1)+"Spalte: "+(column+1));
 								if(getField(line-1, column-1).isO()){
 									return (line+2)*10+column+2;
@@ -179,22 +197,15 @@ public class AIPlayerImpl {
 						}
 					}
 				}
-		
-                //vertikal gewinnchance erhöhen
-                     for(int line=0; line<3;line++){
-                         for(int column=0; column<4;column++){
-                             if(getField(line,column).isX()){
-                                 
-                             }
-                         }
-                     }          
                                 
-		//horizontal gewinnenchance erhöhen
+                   //horizontal gewinnenchance erhöhen
 		for(int line=0; line<3; line++){
 			for(int column=0; column<4;column++){
 				if(getField(line, column).isX()){
 					//System.out.println("Akt X-Feld: "+getField(line+1, column+1));
 					if(checkHorizontalX(line, column)){
+                                            
+                                     System.out.println("Horizontal erhöhen");
 						if(getField(line, column+1).isX()){
 						//	System.out.println("Result: zeile: "+(line)+" spalte: "+(column));
 							return (line+1)*10+(column);
@@ -205,12 +216,48 @@ public class AIPlayerImpl {
 					}
 				}
 			}
-		}
+		}             
+                   //diagonall gewinnchance erhöhen (\)
+                     for(int line=0; line<3;line++){
+                         for(int column=0; column<4;column++){
+                             if(getField(line,column).isX()){
+                                 if(checkDiagonalX2(line, column)){
+                                     System.out.println("diagonall \\");
+                                     if(getField(line-1,column-1).isX()){
+                                         return (line+2)*10+column+2;
+                                     }else{
+                                         return line*10+column;
+                                     }
+                                 }
+                             }
+                         }
+                     } 
+		
+                //diagonall gewinnchance erhöhen (/)
+                     for(int line=0; line<3;line++){
+                         for(int column=0; column<4;column++){
+                             if(getField(line,column).isX()){
+                                 if(checkDiagonalX(line, column)){
+                                     System.out.println("Diagonall //");
+                                     if(getField(line-1,column+1).isX()){
+                                         return (line+2)*10+column;
+                                     }else{
+                                         return line*10+column+2;
+                                     }
+                                 }
+                             }
+                         }
+                     }          
+                     
+                   
+                                
+		
 		//vertiakal gewinnchance erhöhen
 		for(int line=0; line<3; line++){
 			for(int column=0; column<4;column++){
 				if(getField(line, column).isX()){
 					if(checkVertikalX(line, column)){
+                                     System.out.println("Vertikal erhöhen");
 						if(getField(line-1, column).isX()){
 							return (line+2)*10+column+1;
 						}else{
@@ -232,6 +279,14 @@ public class AIPlayerImpl {
 			return (left.isX() && right.isFree()) || (right.isX() && left.isFree());
 		} return false;
 	}
+        
+        private boolean checkHorizontalWin2(int line, int column){
+            if(isField(line,column-1) && isField(line,column+1)){
+			FieldImpl left = getField(line,column-1);
+			FieldImpl right = getField(line, column+1);
+			return left.isX() && right.isX();
+		} return false;
+        }
 	
 	private boolean checkVertikalWin(int line, int column){
 		if(isField(line-1,column) && isField(line+1,column)){
@@ -287,7 +342,7 @@ public class AIPlayerImpl {
 //			System.out.println("check");
 			FieldImpl above = getField(line-1,column);
 			FieldImpl below = getField(line+1,column);
-			return (above.isO() || below.isO()) && !(above.isX() || below.isX());
+			return (above.isO() && below.isO()) && !(above.isX() || below.isX());
 		}return false;
 	}
 	
@@ -306,7 +361,7 @@ public class AIPlayerImpl {
 		if(isField(line,column-1)&&isField(line,column+1)){
 			FieldImpl left = getField(line, column-1);
 			FieldImpl right = getField(line,column+1);
-			return (left.isFree() || left.isX()) && (right.isFree() || right.isX());
+			return ((left.isFree() || left.isX()) && (right.isFree() || right.isX())) || (left.isX() && right.isX());
 		} return false;
 	}
 	
@@ -317,12 +372,29 @@ public class AIPlayerImpl {
 			return (above.isFree() || above.isX()) && (below.isFree() || below.isX());
 		} return false;
 	}
+        
+        private boolean checkDiagonalX(int line, int column){
+            if(isField(line-1,column+1) && isField(line+1,column-1)){
+                FieldImpl right_above = getField(line-1,column+1);
+                FieldImpl left_below = getField(line+1,column-1);
+                return (right_above.isFree() || right_above.isX()) && (left_below.isFree() || left_below.isX());
+            } return false;
+        }
+        
+        private boolean checkDiagonalX2(int line, int column){
+            if(isField(line-1,column-1) && isField(line+1,column+1)){
+                FieldImpl right_below = getField(line+1,column+1);
+                FieldImpl left_above = getField(line-1,column-1);
+                return (right_below.isFree() || right_below.isX()) && (left_above.isFree() || left_above.isX());
+            } return false;
+        }
 	
 	private boolean isField(int line, int column){
 		return line>=0 && line <=2 && column>=0 && column<=3;
 	}
 	
 	private int[] getBestMove(){
+            System.out.println("getbestMove");
 		int[] result = new int[2];
 		int mark = 0;
 		for(int line=0; line<3; line++){
