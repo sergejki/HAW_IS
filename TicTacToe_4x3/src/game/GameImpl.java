@@ -128,7 +128,7 @@ public class GameImpl extends Thread{
 		    	} else{
 		    		boolean check;
 		    		do{
-		    		System.out.print("Spieler: ");
+		    		System.out.print("Mensch: ");
 					input = bufferRead.readLine();
 					//System.out.println(input);
 					xc = input.charAt(0);
@@ -165,8 +165,7 @@ public class GameImpl extends Thread{
 	private void printRules(){
 		System.out.println("======Spielregeln======");
 		System.out.println("1) Der Rechner beginnt");
-		System.out.println("2) Wer zuletzt den Zug macht hat verloren");
-		System.out.println("3) Der Zug wird mit Zahlen eingegeben: ZeileSpalte. \n z.B für Zeile 2 Spalte 3 muss man 23 eigeben:");
+		System.out.println("2) Der Zug wird mit Zahlen eingegeben: ZeileSpalte. \n z.B für Zeile 2 Spalte 3 muss man 23 eigeben:");
 		System.out.println("\t_ _ _ _ \n\t_ _ X _ \n\t_ _ _ _ ");
 		System.out.println();
 	}

@@ -394,7 +394,7 @@ public class AIPlayerImpl {
 	}
 	
 	private int[] getBestMove(){
-            System.out.println("getbestMove");
+            //System.out.println("getbestMove");
 		int[] result = new int[2];
 		int mark = 0;
 		for(int line=0; line<3; line++){
@@ -429,7 +429,7 @@ public class AIPlayerImpl {
 					//Mögliche Reihe -Bonus
 					if(isField(line-1,column) && isField(line+1,column) && (getField(line-1,column).isX() || getField(line+1,column).isX())){System.out.println("\t Reihe1"); temp_mark++;}
 					
-					System.out.println(getField(line, column) + "Mark: "+temp_mark);
+					System.out.println(getField(line, column) + "Bewertung: "+temp_mark);
 					if(temp_mark>mark){
 						mark = temp_mark;
 						result[0] = getField(line, column).getY();
