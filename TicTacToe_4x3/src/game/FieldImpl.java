@@ -152,7 +152,7 @@ public class FieldImpl extends JFrame implements ActionListener {
 
     public void verloren() {
         JOptionPane.showMessageDialog(frame, "Du hast verloren ! :-) ");
-
+        System.exit(0);
     }
 
     @Override
