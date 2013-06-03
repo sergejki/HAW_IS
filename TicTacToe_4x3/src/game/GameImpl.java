@@ -16,12 +16,12 @@ public class GameImpl extends Thread {
     //private boolean isOver = false;
     private int gamer = 1;
     private AIPlayerImpl aiplayer;
-    private FieldImpl field;
+    private GUI gui;
 
     private GameImpl(List<List<FieldImpl>> lines, AIPlayerImpl ai) {
         this.gameList = lines;
         this.aiplayer = ai;
-        this.field = new FieldImpl();
+        this.gui = new GUI();
     }
 
     public static GameImpl valueOf(int lines, int columns) {
@@ -166,6 +166,7 @@ public class GameImpl extends Thread {
                         xc = input.charAt(0);
                         yc = input.charAt(1);
                         check = checkInput(xc, yc);
+                        check = checkInput(xc, yc);
                     } while (!check);
                     x = Integer.parseInt(String.valueOf(xc));
                     y = Integer.parseInt(String.valueOf(yc));
@@ -175,11 +176,11 @@ public class GameImpl extends Thread {
                 //System.out.println("zeile:"+x+" spalte:"+y);
                 if (gamer == 1) {
                     setValue(x, y, "X");
-                    field.setGUI(x, y, "X");
+                    gui.setGUI(x, y, "X");
                     gamer = 2;
                 } else {
                     setValue(x, y, "O");
-                    field.setGUI(x, y, "O");
+                    gui.setGUI(x, y, "O");
                     gamer = 1;
                 }
             } catch (IOException e) {
@@ -195,7 +196,7 @@ public class GameImpl extends Thread {
         } else {
             System.out.println("Spieler " + gamer);
         }
-        field.verloren();
+        gui.verloren();
     }
 
     private void printRules() {
